@@ -3,7 +3,7 @@
 This folder houses all of the assets necessary to run benchmarks for [LavinMQ](https://lavinmq.com/). In order to run these benchmarks, you'll need to:
 
 * [Create the necessary local artifacts](#creating-local-artifacts)
-* [Stand up a LavinMQ cluster](#creating-a-lavinmq-cluster-on-amazon-web-services-aws-using-terraform-and-ansible) on Amazon Web Services (which includes a client host for running the benchmarks)
+* [Stand up a LavinMQ instance](#creating-a-lavinmq-instance-on-amazon-web-services-aws-using-terraform-and-ansible) on Amazon Web Services (which includes a client host for running the benchmarks)
 * [SSH into the client host](#sshing-into-the-client-host)
 * [Run the benchmarks from the client host](#running-the-benchmarks-from-the-client-host)
 
@@ -17,9 +17,9 @@ $ git clone https://github.com/openmessaging/benchmark.git
 $ mvn install
 ```
 
-## Creating a LavinMQ cluster on Amazon Web Services (AWS) using Terraform and Ansible
+## Creating a LavinMQ instance on Amazon Web Services (AWS) using Terraform and Ansible
 
-In order to create an LavinMQ cluster on AWS, you'll need to have the following installed:
+In order to create an LavinMQ instance on AWS, you'll need to have the following installed:
 
 * [Terraform](https://terraform.io)
 * [The `terraform-inventory` plugin for Terraform](https://github.com/adammck/terraform-inventory)
@@ -69,17 +69,17 @@ There's a handful of configurable parameters related to the Terraform deployment
 
 | Variable          | Description                                                                                                                         | Default                                                             |
 |:------------------|:------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------|
-| `region`          | The AWS region in which the LavinMQ cluster will be deployed                                                                        | `us-west-2`                                                         |
-| `az`              | The availability zone in which the LavinMQ cluster will be deployed                                                                 | `us-west-2a`                                                        |
+| `region`          | The AWS region in which the LavinMQ instance will be deployed                                                                       | `us-west-2`                                                         |
+| `az`              | The availability zone in which the LavinMQ instance will be deployed                                                                | `us-west-2a`                                                        |
 | `public_key_path` | The path to the SSH public key that you've generated                                                                                | `~/.ssh/lavinmq_aws.pub`                                           |
-| `ami`             | The [Amazon Machine Image](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) (AMI) to be used by the cluster's machines | [`ami-9fa343e7`](https://access.redhat.com/articles/3135091)        |
+| `ami`             | The [Amazon Machine Image](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) (AMI) to be used by the instance's machine | [`ami-9fa343e7`](https://access.redhat.com/articles/3135091)        |
 | `instance_types`  | The EC2 instance types used by the various components                                                                               | `i3.4xlarge` (LavinMQ brokers), `c4.8xlarge` (benchmarking client) |
 
 > If you modify the `public_key_path`, make sure that you point to the appropriate SSH key path when running the [Ansible playbook](#running-the-ansible-playbook).
 
 ### Running the Ansible playbook
 
-With the appropriate infrastructure in place, you can install and start the LavinMQ cluster using Ansible with just one command.
+With the appropriate infrastructure in place, you can install and start the LavinMQ instance using Ansible with just one command.
 Note that a `TFSTATE` environment must point to the folder in which the `tf.state` file is located.
 
 ```bash
