@@ -22,7 +22,7 @@
         <artifactId>messaging-benchmark</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>driver-rabbitmq</artifactId>
+    <artifactId>driver-lavinmq</artifactId>
 
     <dependencies>
         <dependency>
@@ -31,7 +31,7 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.rabbitmq</groupId>
+            <groupId>com.lavinmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>5.18.0</version>
         </dependency>

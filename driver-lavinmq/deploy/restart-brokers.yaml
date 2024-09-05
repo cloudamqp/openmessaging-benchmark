@@ -13,11 +13,11 @@
 #
 
 - name: Restart brokers
-  hosts: rabbitmq
+  hosts: lavinmq
   connection: ssh
   become: true
   tasks:
-    - name: RabbitMQ - Start service
+    - name: LavinMQ - Start service
       systemd:
         state: restarted
-        name: "rabbitmq-server"
+        name: "lavinmq"
