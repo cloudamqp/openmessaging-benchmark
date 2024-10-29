@@ -1,0 +1,14 @@
+[Unit]
+Description=LavinMQ broker
+After=network.target
+
+[Service]
+ExecStart=/usr/lib/lavinmq/bin/lavinmq
+WorkingDirectory=/var/lib/lavinmq
+RestartSec=1s
+Restart=on-failure
+Type=simple
+LimitNOFILE=300000
+
+[Install]
+WantedBy=multi-user.target
